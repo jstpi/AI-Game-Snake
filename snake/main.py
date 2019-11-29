@@ -58,11 +58,10 @@ def main():
             snake.add_cube()
             food = Square(random_food_pos(snake), food_color)
 
-        for i in range(len(snake.body)):
-            if snake.body[i].pos in list(map(lambda z: z.pos, snake.body[i+1:])):
-                print('Score:', len(snake.body))
-                snake.reset(initial_snake_pos)
-                break
+        if snake.alive == False:
+            print('Score:', len(snake.body))
+            snake.reset(initial_snake_pos)
+            break
         redraw_window(win, snake, food)
 
 main()

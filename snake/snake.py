@@ -7,6 +7,7 @@ class Snake:
     '''snake entity controled by the player'''
     body = []
     turns = {}
+    alive = True
     def __init__(self, pos, color):
         self.color = color
         self.head = Square(pos, color)
@@ -49,13 +50,15 @@ class Snake:
             else:
                 rows = data.getConfig("rows")
                 if square.dir[0] == -1 and square.pos[0] <= 0:
-                    square.pos = (rows-1, square.pos[1])
+                    self.alive = False
                 elif square.dir[0] == 1 and square.pos[0] >= rows-1:
-                    square.pos = (0, square.pos[1])
+                    self.alive = False
                 elif square.dir[1] == 1 and square.pos[1] >= rows-1:
-                    square.pos = (square.pos[0], 0)
+                    self.alive = False
                 elif square.dir[1] == -1 and square.pos[1] <= 0:
-                    square.pos = (square.pos[0], rows-1)
+                    self.alive = False
+                elif self.head.pos in list(map(lambda z: z.pos, self.body[1:])):
+                    self.alive = False
                 else:
                     square.move(square.dir[0], square.dir[1])
 

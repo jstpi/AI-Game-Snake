@@ -20,23 +20,19 @@ class Snake:
             if event.type == QUIT:
                 pygame.quit()
 
-            keys = pygame.key.get_pressed()
             head_pos_key = ''.join(str(e) for e in self.head.pos[:])
 
-            for key in keys:
-                if keys[K_LEFT]:
+            if event.type == pygame.KEYDOWN:
+                if event.key == K_LEFT:
                     self.dir = [-1, 0]
                     self.turns[head_pos_key] = self.dir
-
-                elif keys[K_RIGHT]:
+                elif event.key == K_RIGHT:
                     self.dir = [1, 0]
                     self.turns[head_pos_key] = self.dir
-
-                elif keys[K_UP]:
+                elif event.key == K_UP:
                     self.dir = [0, -1]
                     self.turns[head_pos_key] = self.dir
-
-                elif keys[K_DOWN]:
+                elif event.key == K_DOWN:
                     self.dir = [0, 1]
                     self.turns[head_pos_key] = self.dir
 

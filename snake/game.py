@@ -6,6 +6,12 @@ from square import Square
 from snake import Snake
 
 class Game:
+
+    FOOD = 3
+    HEAD = 2
+    SNAKE = 1
+    SPACE = 0
+
     width = data.getConfig("width")
     rows = data.getConfig("rows")
     square_color = data.getConfig("squareColor")
@@ -14,10 +20,14 @@ class Game:
     line_color = data.getConfig("lineColor")
     board_color = data.getConfig("boardColor")
     gameMap = [[]]
+
     def __init__(self):
         '''snake game'''
         self.snake = Snake(self.initial_snake_pos, self.square_color)
         self.food = Square(self.random_food_pos(), self.food_color)
+
+    def getSnakePos(self):
+        return self.snake.head.pos
 
     def draw_grid(self, surface):
         '''draw visual of the game grid'''
@@ -78,10 +88,11 @@ class Game:
 
         while True:
             # Update the map
-            self.gameMap = [[0 for x in range(self.rows)] for y in range(self.rows)]
+            self.gameMap = [[self.SPACE for x in range(self.rows)] for y in range(self.rows)]
             for body in self.snake.body:
-                self.gameMap[body.pos[1]][body.pos[0]] = 1
-            self.gameMap[self.food.pos[1]][self.food.pos[0]] = 2
+                self.gameMap[body.pos[1]][body.pos[0]] = self.SNAKE
+            self.gameMap[self.food.pos[1]][self.food.pos[0]] = self.FOOD
+            self.gameMap[self.snake.head.pos[1]][self.snake.head.pos[0]] = self.HEAD
 
             pygame.time.delay(50)
             clock.tick(10)

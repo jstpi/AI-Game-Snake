@@ -1,11 +1,17 @@
-import pygame
-from pygame.locals import QUIT, K_LEFT, K_RIGHT, K_UP, K_DOWN
 import random
+import pygame
+from pygame.locals import K_LEFT, K_RIGHT, K_UP, K_DOWN
 import data.dataUtils as data
 from square import Square
 from snake import Snake
 
 class Game:
+
+    FOOD = 3
+    HEAD = 2
+    SNAKE = 1
+    SPACE = 0
+
     width = data.getConfig("width")
     rows = data.getConfig("rows")
     square_color = data.getConfig("squareColor")
@@ -13,11 +19,35 @@ class Game:
     food_color = data.getConfig("foodColor")
     line_color = data.getConfig("lineColor")
     board_color = data.getConfig("boardColor")
-    gameMap = [[]]
+
     def __init__(self):
         '''snake game'''
         self.snake = Snake(self.initial_snake_pos, self.square_color)
         self.food = Square(self.random_food_pos(), self.food_color)
+
+    def get_game_map_rows(self):
+        '''return rows config'''
+        return self.rows
+
+    def get_snake_head_pos(self):
+        '''return snake head pos [x, y]'''
+        return self.snake.head.pos
+
+    def get_snake_full_pos(self):
+        '''return array for each of the snake body pos [x, y]'''
+        return [body.pos for body in self.snake.body]
+
+    def get_snake_dir(self):
+        '''return snake dir [x, y]'''
+        return self.snake.dir
+
+    def get_food_pos(self):
+        '''return food pos [x, y]'''
+        return self.food.pos
+
+    def get_score(self):
+        '''return len of the snake body'''
+        return len(self.snake.body)
 
     def draw_grid(self, surface):
         '''draw visual of the game grid'''
@@ -48,41 +78,40 @@ class Game:
             break
         return pos
 
-    def moveSnakeUp(self):
-        newevent = pygame.event.Event(pygame.KEYDOWN, unicode = '', key = K_UP, mod = pygame.locals.KMOD_NONE, scancode = 111, window = None)
-        newevent2 = pygame.event.Event(pygame.KEYUP, key = K_UP, mod = pygame.locals.KMOD_NONE, scancode = 111, window = None)
+    def move_snake_up(self):
+        '''Trigger one input K_UP to the snake'''
+        newevent = pygame.event.Event(pygame.KEYDOWN, unicode='', key=K_UP, mod=pygame.locals.KMOD_NONE, scancode=111, window=None)
+        newevent2 = pygame.event.Event(pygame.KEYUP, key=K_UP, mod=pygame.locals.KMOD_NONE, scancode=111, window=None)
         pygame.event.post(newevent)
         pygame.event.post(newevent2)
 
-    def moveSnakeDown(self):
-        newevent = pygame.event.Event(pygame.KEYDOWN, unicode = '', key = K_DOWN, mod = pygame.locals.KMOD_NONE, scancode = 116, window = None)
-        newevent2 = pygame.event.Event(pygame.KEYUP, key = K_DOWN, mod = pygame.locals.KMOD_NONE, scancode = 116, window = None)
+    def move_snake_down(self):
+        '''Trigger one input K_DOWN to the snake'''
+        newevent = pygame.event.Event(pygame.KEYDOWN, unicode='', key=K_DOWN, mod=pygame.locals.KMOD_NONE, scancode=116, window=None)
+        newevent2 = pygame.event.Event(pygame.KEYUP, key=K_DOWN, mod=pygame.locals.KMOD_NONE, scancode=116, window=None)
         pygame.event.post(newevent)
         pygame.event.post(newevent2)
 
-    def moveSnakeLeft(self):
-        newevent = pygame.event.Event(pygame.KEYDOWN, unicode = '', key = K_LEFT, mod = pygame.locals.KMOD_NONE, scancode = 113, window = None)
-        newevent2 = pygame.event.Event(pygame.KEYUP, key = K_LEFT, mod = pygame.locals.KMOD_NONE, scancode = 113, window = None)
+    def move_snake_left(self):
+        '''Trigger one input K_LEFT to the snake'''
+        newevent = pygame.event.Event(pygame.KEYDOWN, unicode='', key=K_LEFT, mod=pygame.locals.KMOD_NONE, scancode=113, window=None)
+        newevent2 = pygame.event.Event(pygame.KEYUP, key=K_LEFT, mod=pygame.locals.KMOD_NONE, scancode=113, window=None)
         pygame.event.post(newevent)
         pygame.event.post(newevent2)
 
-    def moveSnakeRight(self):
-        newevent = pygame.event.Event(pygame.KEYDOWN, unicode = '', key = K_RIGHT, mod = pygame.locals.KMOD_NONE, scancode = 114, window = None)
-        newevent2 = pygame.event.Event(pygame.KEYUP, key = K_RIGHT, mod = pygame.locals.KMOD_NONE, scancode = 114, window = None)
+    def move_snake_right(self):
+        '''Trigger one input K_RIGHT to the snake'''
+        newevent = pygame.event.Event(pygame.KEYDOWN, unicode='', key=K_RIGHT, mod=pygame.locals.KMOD_NONE, scancode=114, window=None)
+        newevent2 = pygame.event.Event(pygame.KEYUP, key=K_RIGHT, mod=pygame.locals.KMOD_NONE, scancode=114, window=None)
         pygame.event.post(newevent)
         pygame.event.post(newevent2)
 
     def start(self):
+        '''Main loop of the game'''
         win = pygame.display.set_mode((self.width, self.width))
         clock = pygame.time.Clock()
 
         while True:
-            # Update the map
-            self.gameMap = [[0 for x in range(self.rows)] for y in range(self.rows)]
-            for body in self.snake.body:
-                self.gameMap[body.pos[1]][body.pos[0]] = 1
-            self.gameMap[self.food.pos[1]][self.food.pos[0]] = 2
-
             pygame.time.delay(50)
             clock.tick(10)
             self.snake.move()

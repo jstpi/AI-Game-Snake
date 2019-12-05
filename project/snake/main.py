@@ -6,5 +6,10 @@ def main():
     x = threading.Thread(target=game.start)
     x.start()
     x.join()
+    x = threading.Thread(target=game.start)
+    x.start()
+    x.join()
+    x = threading.Thread(target=game.start)
+    x.start()
 
 main()

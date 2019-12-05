@@ -6,12 +6,6 @@ from square import Square
 from snake import Snake
 
 class Game:
-
-    FOOD = 3
-    HEAD = 2
-    SNAKE = 1
-    SPACE = 0
-
     width = data.getConfig("width")
     rows = data.getConfig("rows")
     square_color = data.getConfig("squareColor")
@@ -48,6 +42,14 @@ class Game:
     def get_score(self):
         '''return len of the snake body'''
         return len(self.snake.body)
+
+    def is_snake_alive(self):
+        '''return True if the snake is alive'''
+        return self.snake.alive
+
+    def kill_snake(self):
+        '''set snake.alive to False'''
+        self.snake.alive = False
 
     def draw_grid(self, surface):
         '''draw visual of the game grid'''
@@ -119,8 +121,9 @@ class Game:
                 self.snake.add_cube()
                 self.food = Square(self.random_food_pos(), self.food_color)
 
-            if self.snake.alive == False:
+            if not self.is_snake_alive():
                 print('Score:', len(self.snake.body))
-                self.snake.reset(self.initial_snake_pos)
+                self.snake.reset(data.getConfig("initialSnakePos"))
+                self.snake.alive = True
                 break
             self.redraw_window(win)

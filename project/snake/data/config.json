@@ -1,6 +1,6 @@
 {
     "width": 500,
-    "rows": 20,
+    "rows": 10,
     "squareColor": [255, 0, 0],
     "foodColor": [0, 255, 0],
     "lineColor": [255, 255, 255],

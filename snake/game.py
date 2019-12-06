@@ -25,6 +25,10 @@ class Game:
         self.snake = Snake(self.initial_snake_pos, self.square_color)
         self.food = Square(self.random_food_pos(), self.food_color)
 
+    def get_inputs(self):
+        return[self.get_snake_head_pos(), self.get_snake_dir(), self.get_food_pos()]
+        #return[self.get_snake_head_pos(), self.get_snake_full_pos(), self.get_snake_dir()]
+
     def get_game_map_rows(self):
         '''return rows config'''
         return self.rows
@@ -106,21 +110,45 @@ class Game:
         pygame.event.post(newevent)
         pygame.event.post(newevent2)
 
-    def start(self):
+    def send_inputs(self,net):
+        input = []
+        for i in [self.get_snake_head_pos(), self.get_snake_dir(), self.get_food_pos()]:
+            input.append(i[0])
+            input.append(i[1])
+        output = net.activate(input)
+        if(output[0]>0.5):
+            print("up")
+            self.move_snake_up()
+        elif(output[0]>=0):
+            print("right")
+            self.move_snake_right()
+        elif(output[0]<(-0.5)):
+            print("down")
+            self.move_snake_down()
+        else:
+            print("left")
+            self.move_snake_left()
+
+        print(output[0])
+
+    def start(self, net):
         '''Main loop of the game'''
         win = pygame.display.set_mode((self.width, self.width))
         clock = pygame.time.Clock()
-
-        while True:
+        flag=True
+        while flag:
             pygame.time.delay(50)
             clock.tick(10)
+            self.send_inputs(net)
             self.snake.move()
+            print(self.snake.alive)
             if self.snake.body[0].pos == self.food.pos:
                 self.snake.add_cube()
                 self.food = Square(self.random_food_pos(), self.food_color)
 
             if self.snake.alive == False:
                 print('Score:', len(self.snake.body))
-                self.snake.reset(self.initial_snake_pos)
-                break
+                self.snake.reset(data.getConfig("initialSnakePos"))
+                self.snake.alive = True
+                flag=False
             self.redraw_window(win)

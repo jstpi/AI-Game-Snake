@@ -38,25 +38,37 @@ class Snake:
 
         for i, square in enumerate(self.body):
             square_pos_key = ''.join(str(e) for e in square.pos[:])
+            rows = data.getConfig("rows")
+            if square.dir[0] == -1 and square.pos[0] <= 0:
+                self.alive = False
+            elif square.dir[0] == 1 and square.pos[0] >= rows-1:
+                self.alive = False
+            elif square.dir[1] == 1 and square.pos[1] >= rows-1:
+                self.alive = False
+            elif square.dir[1] == -1 and square.pos[1] <= 0:
+                self.alive = False
+            elif self.head.pos in list(map(lambda z: z.pos, self.body[1:])):
+                self.alive = False
+
             if square_pos_key in self.turns:
                 turn = self.turns[square_pos_key]
                 square.move(turn[0], turn[1])
                 if i == len(self.body)-1:
                     self.turns.pop(square_pos_key)
             else:
-                rows = data.getConfig("rows")
-                if square.dir[0] == -1 and square.pos[0] <= 0:
-                    self.alive = False
-                elif square.dir[0] == 1 and square.pos[0] >= rows-1:
-                    self.alive = False
-                elif square.dir[1] == 1 and square.pos[1] >= rows-1:
-                    self.alive = False
-                elif square.dir[1] == -1 and square.pos[1] <= 0:
-                    self.alive = False
-                elif self.head.pos in list(map(lambda z: z.pos, self.body[1:])):
-                    self.alive = False
-                else:
-                    square.move(square.dir[0], square.dir[1])
+                # rows = data.getConfig("rows")
+                # if square.dir[0] == -1 and square.pos[0] <= 0:
+                #     self.alive = False
+                # elif square.dir[0] == 1 and square.pos[0] >= rows-1:
+                #     self.alive = False
+                # elif square.dir[1] == 1 and square.pos[1] >= rows-1:
+                #     self.alive = False
+                # elif square.dir[1] == -1 and square.pos[1] <= 0:
+                #     self.alive = False
+                # elif self.head.pos in list(map(lambda z: z.pos, self.body[1:])):
+                #     self.alive = False
+
+                square.move(square.dir[0], square.dir[1])
 
 
     def reset(self, pos):

@@ -1,0 +1,9 @@
+{
+    "width": 500,
+    "rows": 10,
+    "squareColor": [0, 255, 0],
+    "foodColor": [255, 0, 0],
+    "lineColor": [255, 255, 255],
+    "boardColor": [0, 0, 0],
+    "initialSnakePos": [4, 4]
+}

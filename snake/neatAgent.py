@@ -3,16 +3,25 @@ import threading
 import os
 import neat
 
-def eval_genomes(genomes, config):
-    game = Game()
-    for genome_id, genome in genomes:
-        genome.fitness = 4.0
-        net = neat.nn.FeedForwardNetwork.create(genome, config)
 
-        x = threading.Thread(target=game.start(net))
+
+def eval_genomes(genomes, config):
+
+
+    for genome_id, genome in genomes:
+        winnerSize = 0
+        genome.fitness = 0
+        #instantiation of the neat neural network
+        net = neat.nn.FeedForwardNetwork.create(genome, config)
+        #thread creation for the play of the game
+        x = threading.Thread(target=game.start(net, genome))
         x.start()
-        
+        #if statment to keep track of biggest snake through iterations
+        if(game.size>winnerSize):
+            winnerSize = game.size
+        print("Fitness: ", genome.fitness)
         x.join()
+    print("Longest snake length: ", winnerSize)
 
 def run(config_file):
     # Load configuration.
@@ -24,10 +33,10 @@ def run(config_file):
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
-    # p.add_reporter(neat.Checkpointer(5))
 
-    # Run for up to 2 generations.
-    winner = p.run(eval_genomes, 1)
+
+    # Run for up to 40 generations.
+    winner = p.run(eval_genomes, 40)
 
 if __name__ == '__main__':
     #main()
@@ -36,4 +45,6 @@ if __name__ == '__main__':
     # current working directory.
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'neat_config.txt')
+    #new game
+    game = Game()
     run(config_path)

@@ -1,10 +1,11 @@
-# CSI4506-project
-Project on the snake game for the course: CSI4506
+# Snake Game
+Project on the snake game for the course: CSI4506 of the University of Ottawa
+
+## Contributors
 * Jérémie St-Pierre (8628942)
 * Frédérik Laflèche (8616081)
 
-## Snake Game
-### Dependencies
+## Dependencies
 * pip3 install pygame
 * (Ubuntu): sudo apt-get install python3-dev
 
@@ -59,7 +60,7 @@ Project on the snake game for the course: CSI4506
 ## Greedy
 
 ### Path
-* SnakeNEAT
+* SnakeG
   * game.py
   * main.py
   * snake.py

@@ -1,5 +1,5 @@
 # Snake Game AI
-Project on the snake game for the course: CSI4506 of the University of Ottawa
+Project for the course CSI4506 of the University of Ottawa. Experimentation on the efficiency of the Q Learning, NEAT learning and gready approach to teach an AI to play the snake game.
 
 ## Contributors
 * Jérémie St-Pierre (8628942)

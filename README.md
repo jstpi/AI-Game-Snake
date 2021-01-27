@@ -1,4 +1,4 @@
-# Snake Game
+# Snake Game AI
 Project on the snake game for the course: CSI4506 of the University of Ottawa
 
 ## Contributors

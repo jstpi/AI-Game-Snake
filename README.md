@@ -1,13 +1,19 @@
 # Snake Game AI
-Project for the course CSI4506 of the University of Ottawa. Experimentation on the efficiency of the Q Learning, NEAT learning and gready approach to teach an AI to play the snake game.
+Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expérimentation sur l'éfficacité du "Q Learning", "NEAT Learning" et l'approche "Gready" pour la conception d'un IA capable de jouer le jeu: Snake de façon efficace.
 
-## Contributors
-* Jérémie St-Pierre (8628942)
-* Frédérik Laflèche (8616081)
+* [Conception du projet](https://github.com/jstpi047/AI-Game-Snake/blob/master/doc/CSI4506-Projet-Etape2-DefinitionProjet-SnakeAI.pdf)
+* [Présentation du projet](https://github.com/jstpi047/AI-Game-Snake/blob/master/doc/CSI4506-Projet-Presentation.pdf)
+* [Rapport du projet](https://github.com/jstpi047/AI-Game-Snake/blob/master/doc/CSI4506-Projet-Etape3.pdf)
 
-## Dependencies
-* pip3 install pygame
-* (Ubuntu): sudo apt-get install python3-dev
+## Dépendance
+```
+> pip3 install pygame
+
+```
+(pour système Ubuntu)
+```
+> sudo apt-get install python3-dev
+```
 
 ## Q-Learning
 
@@ -29,14 +35,23 @@ Project for the course CSI4506 of the University of Ottawa. Experimentation on t
           * config.json
           * dataUtils.py
 
-### Dependencies
-* pip3 install gym
-* pip3 install numpy
-* cd snakeQ/gym_foo pip3 install -e .
+### Dépendance
+```
+> pip3 install gym
+> pip3 install numpy
+> cd snakeQ/gym_foo pip3 install -e .
+```
 
-### Run
-* python3 main.py (To test manually the snake game)
-* python3 q_agent.py (To test the q agent)
+### Execution
+(test du jeu)
+```
+> python3 main.py
+```
+
+(test l'agent)
+```
+> python3 q_agent.py
+```
 
 ## NEAT
 
@@ -51,11 +66,16 @@ Project for the course CSI4506 of the University of Ottawa. Experimentation on t
     * config.json
     * dataUtils.py
 
-### Dependencies
-* pip3 install neat-python
+### Dépendance
+```
+> pip3 install neat-python
+```
 
-### Run
-* python3 neatAgent.py (To test the NEAT agent)
+### Execution
+(test l'agent)
+```
+> python3 neatAgent.py 
+```
 
 ## Greedy
 
@@ -69,9 +89,15 @@ Project for the course CSI4506 of the University of Ottawa. Experimentation on t
     * config.json
     * dataUtils.py
 
-### Dependencies
-* no additional dependencies
+### Dépendance
+* pas de dépendance additionnel
 
-### Run
-* python3 main.py (To test the Gready agent)
+### Execution
+(test l'agent)
+```
+> python3 main.py
+```
 
+## Membre du projet
+* Jérémie St-Pierre (8628942)
+* Frédérik Laflèche (8616081)

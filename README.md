@@ -8,7 +8,6 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 ## Dépendance
 ```
 > pip3 install pygame
-
 ```
 (pour système Ubuntu)
 ```
@@ -43,12 +42,12 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 ```
 
 ### Execution
-(test du jeu)
+-> test du jeu
 ```
 > python3 main.py
 ```
 
-(test l'agent)
+-> test l'agent
 ```
 > python3 q_agent.py
 ```
@@ -72,7 +71,7 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 ```
 
 ### Execution
-(test l'agent)
+-> test l'agent
 ```
 > python3 neatAgent.py 
 ```
@@ -93,11 +92,11 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 * pas de dépendance additionnel
 
 ### Execution
-(test l'agent)
+-> test l'agent
 ```
 > python3 main.py
 ```
 
 ## Membre du projet
-* Jérémie St-Pierre (8628942)
-* Frédérik Laflèche (8616081)
+* Jérémie St-Pierre
+* Frédérik Laflèche

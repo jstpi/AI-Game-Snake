@@ -44,12 +44,12 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 ### Execution
 -> test du jeu
 ```
-> python3 main.py
+> python3 ./snakeQ/gym-foo/gym_foo/envs/main.py
 ```
 
 -> test l'agent
 ```
-> python3 q_agent.py
+> python3 ./snakeQ/gym-foo/gym_foo/envs/q_agent.py
 ```
 
 ## NEAT
@@ -73,7 +73,7 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 ### Execution
 -> test l'agent
 ```
-> python3 neatAgent.py 
+> python3 ./snakeNEAT/neatAgent.py
 ```
 
 ## Greedy
@@ -94,7 +94,7 @@ Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expér
 ### Execution
 -> test l'agent
 ```
-> python3 main.py
+> python3 ./snakeG/main.py
 ```
 
 ## Membre du projet

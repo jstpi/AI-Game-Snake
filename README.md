@@ -1,3 +1,4 @@
+![splash2](https://user-images.githubusercontent.com/111090400/197368038-cc6510b1-126b-43d8-a2fa-ba505c40067f.png)
 # Snake Game AI
 Projet pour le cours CSI4506 de l'Université d'Ottawa. Ce projet est une expérimentation sur l'éfficacité du "Q Learning", "NEAT Learning" et l'approche "Greedy" pour la conception d'un IA capable de jouer le jeu: Snake de façon efficace.
 
